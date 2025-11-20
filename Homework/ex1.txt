@@ -1,0 +1,86 @@
+paulazoitei@ENDAUTOWWnBi6Yx:/work$ KEY_NAME=ubuntu2404v2; ssh-keygen -t rsa -q -P "encrypt_private_key" -f $KEY_NAME
+ubuntu2404  ubuntu2404.pub  ubuntu2404v2  ubuntu2404v2.pub
+
+paulazoitei@ENDAUTOWWnBi6Yx:/work$ cat ubuntu2404v2.pub
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCchgaRUT6vvpTywq43ZaSSJmbc+uaa0J0osXenrJSWIcOI2zHMO7WZENzu5N4leG2EyHSGzsFr67YlTejq0QQxViqCY1FgHhrQ8UiVkk7iVrbQtFYC3r9GRxCmXjRlbluM2RGTeCH6FbTQBsFTswEMFZ9qbLuQtTeikkyCGZo1wV01HzV08KvPfJfYWopHULgbdQ7iGqKfkUKpcb5n+vGRf7AR7Tr9X1kvy300IoLOfRGsIyIFYM4RvodXfpueQCx3dmJ6SqbJy5WXLLzlhoLd7OzGYCggNeJ6S43iKEZAOBn74wkuaOVqfuNYzHc8kxuqUDjBljWdcQLwf/tZJo0VNm0nKklPvFklMB9zSzjTLFaXioj2ejW/zLjON2rfMTghur5imI6u76VD76tMVBJCblxT7t2147ASyZvFJSDKtRM7FxMtSsMF6bW7WQlVeqZ5Bbt/YKAI5ok6Tq21yp1dO96uLrTcR86dtjZRwDRhj5bry1z0yirfLfNjuVa6V+M=
+
+root@ubuntu2404:/home# sudo useradd -m azoiteipaul
+
+root@ubuntu2404:/home# cd /home/azoiteipaul/
+
+root@ubuntu2404:/home/azoiteipaul#
+
+root@ubuntu2404:/home/azoiteipaul# mkdir -p .ssh
+
+root@ubuntu2404:/home/azoiteipaul# cd .ssh
+
+root@ubuntu2404:/home/azoiteipaul/.ssh# nano authorized_keys
+
+root@ubuntu2404:/home/azoiteipaul/.ssh# ls
+authorized_keys
+
+root@ubuntu2404:/home/azoiteipaul/.ssh# ll
+total 12
+drwxr-xr-x 2 root        root        4096 Nov 19 14:14 ./
+drwxr-x--- 3 azoiteipaul azoiteipaul 4096 Nov 19 14:13 ../
+-rw-r--r-- 1 root        root         553 Nov 19 14:14 authorized_keys
+
+root@ubuntu2404:/home/azoiteipaul/.ssh# chown azoiteipaul:azoiteipaul authorized_keys
+
+root@ubuntu2404:/home/azoiteipaul# ll
+total 24
+drwxr-x--- 3 azoiteipaul azoiteipaul 4096 Nov 19 14:13 ./
+drwxr-xr-x 4 root        root        4096 Nov 19 14:08 ../
+-rw-r--r-- 1 azoiteipaul azoiteipaul  220 Mar 31  2024 .bash_logout
+-rw-r--r-- 1 azoiteipaul azoiteipaul 3771 Mar 31  2024 .bashrc
+-rw-r--r-- 1 azoiteipaul azoiteipaul  807 Mar 31  2024 .profile
+drwxr-xr-x 2 root        root        4096 Nov 19 14:14 .ssh/
+
+root@ubuntu2404:/home/azoiteipaul# chown azoiteipaul:azoiteipaul .ssh -R
+
+root@ubuntu2404:/home/azoiteipaul/.ssh# chmod 600 authorized_keys
+root@ubuntu2404:/home/azoiteipaul/.ssh# ll
+total 12
+drwx------ 2 azoiteipaul azoiteipaul 4096 Nov 19 14:14 ./
+drwxr-x--- 6 azoiteipaul azoiteipaul 4096 Nov 19 14:33 ../
+-rw------- 1 azoiteipaul azoiteipaul  553 Nov 19 14:14 authorized_keys
+
+root@ubuntu2404:/home/azoiteipaul# chmod 700 .ssh
+root@ubuntu2404:/home/azoiteipaul# ll
+total 36
+drwxr-x--- 6 azoiteipaul azoiteipaul 4096 Nov 19 14:33 ./
+drwxr-xr-x 4 root        root        4096 Nov 19 14:08 ../
+-rw-r--r-- 1 azoiteipaul azoiteipaul  220 Mar 31  2024 .bash_logout
+-rw-r--r-- 1 azoiteipaul azoiteipaul 3771 Mar 31  2024 .bashrc
+drwx------ 2 azoiteipaul azoiteipaul 4096 Nov 19 14:33 .cache/
+drwx------ 3 azoiteipaul azoiteipaul 4096 Nov 19 14:33 .local/
+-rw-r--r-- 1 azoiteipaul azoiteipaul  807 Mar 31  2024 .profile
+drwx------ 3 azoiteipaul azoiteipaul 4096 Nov 19 14:33 snap/
+drwx------ 2 azoiteipaul azoiteipaul 4096 Nov 19 14:14 .ssh/
+
+root@ubuntu2404:/home/azoiteipaul# hostname -I
+10.0.2.15 192.168.56.101 fd17:625c:f037:2:d0cc:39d8:569e:9fb0 fd17:625c:f037:2:a00:27ff:fe0c:e7b1
+
+paulazoitei@ENDAUTOWWnBi6Yx:/work$ ssh -i ubuntu2404v2 azoiteipaul@192.168.56.101
+Enter passphrase for key 'ubuntu2404v2':
+Welcome to Ubuntu 24.04.3 LTS (GNU/Linux 6.14.0-35-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+Expanded Security Maintenance for Applications is not enabled.
+
+82 updates can be applied immediately.
+To see these additional updates run: apt list --upgradable
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+Last login: Wed Nov 19 14:33:57 2025 from 192.168.56.1
+$ who
+paulazoitei seat0        2025-11-19 08:47 (login screen)
+paulazoitei :0           2025-11-19 08:47 (:0)
+azoiteipaul pts/1        2025-11-19 14:34 (192.168.56.1)
+paulazoitei pts/4        2025-11-19 08:53 (192.168.56.1)
+paulazoitei pts/5        2025-11-19 08:54 (192.168.56.1)

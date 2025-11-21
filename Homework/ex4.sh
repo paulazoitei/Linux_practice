@@ -3,8 +3,15 @@
 CMD='top -bn1'
 
 OUTDIR=$(mktemp -d)
-cd "$OUTDIR" && python3 -m http.server 8500 &
+for PORT in $(seq 8000 9990);do
+    if ! ss -ltn | awk '{print $4}' | grep -q ":$PORT$"; then
+        break
+    fi
+done
 
+cd "$OUTDIR" && python3 -m http.server "$PORT" &
+
+echo "Server started on: http://localhost:$PORT"
 
 while : ; do
     {
